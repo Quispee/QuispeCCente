@@ -1,798 +1,364 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yuler Quispe Centeno - Desarrollador de Sistemas</title>
-    <meta name="description" content="Portfolio profesional de Yuler Quispe Centeno, desarrollador de sistemas egresado del Instituto SISE">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Mensaje Especial</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Poppins:wght@300;400;500&display=swap');
     
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Animate.css -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    
-    <!-- AOS (Animate On Scroll) -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <style>
-    :root {
-        --primary-color: #3498db;
-        --secondary-color: #2ecc71;
-        --text-color: #333;
-        --bg-color: #f9f9f9;
-        --card-bg: #fff;
-        --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        --transition: all 0.3s ease;
-    }
-
-    /* Dark Mode Variables */
-    [data-theme="dark"] {
-        --primary-color: #2980b9;
-        --secondary-color: #27ae60;
-        --text-color: #f9f9f9;
-        --bg-color: #121212;
-        --card-bg: #1e1e1e;
-        --shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-    }
-
     body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        color: var(--text-color);
-        background-color: var(--bg-color);
-        transition: var(--transition);
-        line-height: 1.6;
-        margin: 0;
-        padding: 0;
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(ellipse at bottom, #1B2735 0%, #090A0F 100%);
+      font-family: 'Poppins', sans-serif;
+      overflow: hidden;
+      position: relative;
     }
 
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
+    /* Estrellas de fondo */
+    .star {
+      position: absolute;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle var(--duration) infinite ease-in-out;
+      opacity: 0;
     }
 
-    /* Navbar Styles */
-    nav {
-        background-color: var(--card-bg);
-        box-shadow: var(--shadow);
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 1000;
-        transition: var(--transition);
-        padding: 15px 0;
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.2; transform: scale(0.5); }
+      50% { opacity: 1; transform: scale(1); }
     }
 
-    nav .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+    /* Contenedor principal */
+    .container-3d {
+      position: relative;
+      width: 90vw;
+      max-width: 320px;
+      perspective: 2000px;
+      cursor: pointer;
+      z-index: 10;
+      transition: transform 0.5s ease;
     }
 
-    .logo {
-        font-weight: bold;
-        font-size: 1.5rem;
-        color: var(--primary-color);
-        text-decoration: none;
+    .container-3d:hover {
+      transform: translateY(-5px);
     }
 
-    .logo span {
-        color: var(--secondary-color);
+    /* Sobre */
+    .envelope-wrapper {
+      position: relative;
+      width: 100%;
+      height: 180px;
+      transform-style: preserve-3d;
+      transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
     }
 
-    .nav-links {
-        display: flex;
-        gap: 20px;
+    .envelope {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(145deg, #e74c3c, #c0392b);
+      border-radius: 8px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+      backface-visibility: hidden;
+      overflow: hidden;
     }
 
-    .nav-links a {
-        color: var(--text-color);
-        text-decoration: none;
-        transition: var(--transition);
+    .envelope:before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(45deg, transparent 48%, rgba(255,255,255,0.3) 49%, rgba(255,255,255,0.3) 51%, transparent 52%);
+      background-size: 10px 10px;
+      opacity: 0.3;
     }
 
-    .nav-links a:hover {
-        color: var(--primary-color);
+    .flap {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 50%;
+      background: linear-gradient(145deg, #f39c12, #e67e22);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform-origin: top;
+      transition: transform 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      z-index: 3;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.3);
     }
 
-    .hamburger {
-        display: none;
-        background: none;
-        border: none;
-        color: var(--text-color);
-        font-size: 1.5rem;
-        cursor: pointer;
+    /* Carta */
+    .letter {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%) translateY(0) scale(0.95);
+      width: 90%;
+      background: linear-gradient(to bottom right, #fff, #f9f9f9);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+      opacity: 0;
+      transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      z-index: 1;
+      font-size: 13px;
+      max-height: 160px;
+      overflow-y: auto;
+      line-height: 1.6;
     }
 
-    /* Hero Section */
-    .hero {
-        height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-        color: white;
-        padding-top: 70px;
+    .container-3d.open .envelope-wrapper {
+      transform: translateY(-50px);
     }
 
-    .hero h1 {
-        font-size: 3rem;
-        margin-bottom: 20px;
+    .container-3d.open .flap {
+      transform: rotateX(180deg);
     }
 
-    .typing-text {
-        font-size: 1.5rem;
-        margin: 20px 0;
-        border-right: 2px solid white;
-        white-space: nowrap;
-        overflow: hidden;
-        animation: typing 3s steps(40) 1s 1 normal both,
-                   blink-caret 0.75s step-end infinite;
+    .container-3d.open .letter {
+      transform: translateX(-50%) translateY(-250px) scale(1);
+      opacity: 1;
     }
 
-    @keyframes typing {
-        from { width: 0 }
-        to { width: 100% }
+    /* Efecto de confeti */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      opacity: 0;
+      animation: confetti-fall 3s ease-in-out forwards;
+      z-index: 5;
     }
 
-    @keyframes blink-caret {
-        from, to { border-color: transparent }
-        50% { border-color: white }
-    }
-
-    .hero-buttons {
-        margin-top: 30px;
-    }
-
-    /* Botones */
-    .btn {
-        padding: 12px 24px;
-        border-radius: 50px;
-        text-decoration: none;
-        font-weight: bold;
-        transition: var(--transition);
-        margin: 10px;
-        display: inline-block;
-    }
-
-    .btn-primary {
-        background-color: white;
-        color: var(--primary-color);
-    }
-
-    .btn-primary:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-    }
-
-    .btn-secondary {
-        background-color: transparent;
-        color: white;
-        border: 2px solid white;
-    }
-
-    .btn-secondary:hover {
-        background-color: white;
-        color: var(--primary-color);
-    }
-
-    /* Secciones */
-    .section {
-        padding: 100px 0;
-    }
-
-    .section-title {
-        text-align: center;
-        margin-bottom: 50px;
-        font-size: 2.5rem;
-        color: var(--primary-color);
-    }
-
-    /* Dark Mode Toggle */
-    #theme-toggle {
-        background: none;
-        border: none;
-        color: var(--text-color);
-        font-size: 1.2rem;
-        cursor: pointer;
-        transition: var(--transition);
-    }
-
-    #theme-toggle:hover {
-        color: var(--primary-color);
-        transform: rotate(30deg);
-    }
-
-    /* About Section */
-    .about-content {
-        display: flex;
-        align-items: center;
-        gap: 50px;
-    }
-
-    .about-img {
-        width: 300px;
-        height: 300px;
-        border-radius: 50%;
-        object-fit: cover;
-        border: 5px solid var(--primary-color);
-        box-shadow: var(--shadow);
-    }
-
-    .about-text {
-        flex: 1;
-    }
-
-    /* Skills Section */
-    .skills-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-        gap: 20px;
-    }
-
-    .skill-card {
-        background-color: var(--card-bg);
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: var(--shadow);
-        transition: var(--transition);
-        text-align: center;
-    }
-
-    .skill-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .skill-icon {
-        font-size: 2.5rem;
-        color: var(--primary-color);
-        margin-bottom: 15px;
-    }
-
-    /* Projects Section */
-    .projects-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 30px;
-    }
-
-    .project-card {
-        background-color: var(--card-bg);
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: var(--shadow);
-        transition: var(--transition);
-    }
-
-    .project-card:hover {
-        transform: translateY(-10px);
-    }
-
-    .project-img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-    }
-
-    .project-info {
-        padding: 20px;
-    }
-
-    .project-links {
-        display: flex;
-        gap: 10px;
-        margin-top: 15px;
-    }
-
-    /* Contact Section */
-    .contact-container {
-        display: flex;
-        gap: 50px;
-    }
-
-    .contact-form {
-        flex: 1;
-    }
-
-    .form-group {
-        margin-bottom: 20px;
-    }
-
-    .form-group input,
-    .form-group textarea {
-        width: 100%;
-        padding: 12px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        background-color: var(--card-bg);
-        color: var(--text-color);
-        transition: var(--transition);
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus {
-        border-color: var(--primary-color);
-        outline: none;
-        box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
-    }
-
-    .contact-info {
-        flex: 1;
-    }
-
-    .contact-item {
-        display: flex;
-        align-items: center;
-        margin-bottom: 20px;
-    }
-
-    .contact-icon {
-        font-size: 1.5rem;
-        color: var(--primary-color);
-        margin-right: 15px;
-        width: 40px;
-        text-align: center;
-    }
-
-    /* Social Float */
-    .social-float {
-        position: fixed;
-        right: 20px;
-        top: 50%;
-        transform: translateY(-50%);
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        z-index: 100;
-    }
-
-    .social-icon {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-size: 20px;
-        text-decoration: none;
-        transition: var(--transition);
-        position: relative;
-    }
-
-    .social-icon:hover {
-        transform: scale(1.1) translateX(-5px);
-    }
-
-    .tooltip {
-        position: absolute;
-        right: 60px;
-        white-space: nowrap;
-        background: #333;
-        color: white;
-        padding: 5px 10px;
-        border-radius: 5px;
-        opacity: 0;
-        transition: opacity 0.3s;
-        pointer-events: none;
-    }
-
-    .social-icon:hover .tooltip {
+    @keyframes confetti-fall {
+      0% {
+        transform: translateY(-100px) rotate(0deg);
         opacity: 1;
+      }
+      100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+      }
     }
 
-    /* Colores para cada red social */
-    .linkedin { background: #0077B5; }
-    .github { background: #333; }
-    .whatsapp { background: #25D366; }
-    .instagram { background: #E1306C; }
-    .email { background: #EA4335; }
-
-    /* Footer */
-    footer {
-        background-color: var(--card-bg);
-        padding: 20px 0;
-        text-align: center;
-        box-shadow: var(--shadow);
+    /* Botón de cierre */
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: rgba(0,0,0,0.1);
+      border: none;
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      opacity: 0;
+      transition: all 0.3s ease;
+      z-index: 10;
     }
 
-    /* Responsive Design */
-    @media (max-width: 768px) {
-        .nav-links {
-            display: none;
-            position: absolute;
-            top: 70px;
-            left: 0;
-            right: 0;
-            background-color: var(--card-bg);
-            flex-direction: column;
-            padding: 20px;
-            box-shadow: var(--shadow);
-        }
-
-        .nav-links.active {
-            display: flex;
-        }
-
-        .hamburger {
-            display: block;
-        }
-
-        .hero h1 {
-            font-size: 2rem;
-        }
-
-        .typing-text {
-            font-size: 1.2rem;
-        }
-
-        .about-content {
-            flex-direction: column;
-        }
-
-        .contact-container {
-            flex-direction: column;
-        }
-
-        .social-float {
-            flex-direction: row;
-            top: auto;
-            bottom: 20px;
-            right: 50%;
-            transform: translateX(50%);
-        }
-
-        .social-icon .tooltip {
-            top: -40px;
-            right: auto;
-            left: 50%;
-            transform: translateX(-50%);
-        }
+    .close-btn:hover {
+      background: rgba(0,0,0,0.2);
     }
-    </style>
+
+    .container-3d.open .close-btn {
+      opacity: 1;
+    }
+
+    /* Scroll personalizado */
+    .letter::-webkit-scrollbar {
+      width: 5px;
+    }
+    .letter::-webkit-scrollbar-thumb {
+      background: linear-gradient(to bottom, #f39c12, #e74c3c);
+      border-radius: 4px;
+    }
+
+    /* Efecto de brillo */
+    .shine {
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0) 0%,
+        rgba(255, 255, 255, 0.3) 50%,
+        rgba(255, 255, 255, 0) 100%
+      );
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      100% {
+        left: 150%;
+      }
+    }
+  </style>
 </head>
-<body>
-    <!-- Barra de navegación -->
-    <nav>
-        <div class="container">
-            <a href="#" class="logo">Yuler<span>QC</span></a>
-            <div class="nav-links">
-                <a href="#about">Sobre mí</a>
-                <a href="#skills">Habilidades</a>
-                <a href="#projects">Proyectos</a>
-                <a href="#contact">Contacto</a>
-                <button id="theme-toggle" aria-label="Cambiar modo claro/oscuro">
-                    <i class="fas fa-moon"></i>
-                </button>
-            </div>
-            <button class="hamburger" aria-label="Menú">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </nav>
+<body class="antialiased">
 
-    <!-- Sección Hero -->
-    <header class="hero">
-        <div class="container">
-            <h1 class="animate__animated animate__fadeInDown">Yuler Quispe Centeno</h1>
-            <p class="typing-text">Desarrollador de Sistemas | 25 años | Comas, Lima</p>
-            <div class="hero-buttons">
-                <a href="#contact" class="btn-primary">Contáctame</a>
-                <a href="#projects" class="btn-secondary">
-                    <i class="fas fa-laptop-code"></i> Ver Proyectos
-                </a>
-            </div>
-        </div>
-    </header>
+<!-- Estrellas de fondo -->
+<div id="stars-container"></div>
 
-    <!-- Sección Sobre Mí -->
-    <section id="about" class="section" data-aos="fade-up">
-        <div class="container">
-            <h2 class="section-title">Sobre Mí</h2>
-            <div class="about-content">
-                <img src="https://via.placeholder.com/300" alt="Yuler Quispe Centeno" class="about-img">
-                <div class="about-text">
-                    <h3>¡Hola! Soy Yuler</h3>
-                    <p>Desarrollador de Sistemas egresado del Instituto SISE con 25 años de edad, residente en Comas, Lima. Apasionado por la tecnología y el desarrollo de software.</p>
-                    <p>Además de mi formación en sistemas, he estudiado inglés y quechua, lo que me permite comunicarme efectivamente en diversos contextos culturales.</p>
-                    <p>Mi enfoque principal ha sido el desarrollo de sistemas de ventas y aplicaciones empresariales que optimizan procesos y mejoran la productividad.</p>
-                    <a href="cv-yuler-quispe.pdf" download class="btn-primary">
-                        <i class="fas fa-download"></i> Descargar CV
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección Habilidades -->
-    <section id="skills" class="section" data-aos="fade-up">
-        <div class="container">
-            <h2 class="section-title">Mis Habilidades</h2>
-            <div class="skills-grid">
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-code"></i>
-                    </div>
-                    <h3>Desarrollo Web</h3>
-                    <p>HTML5, CSS3, JavaScript, PHP</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-database"></i>
-                    </div>
-                    <h3>Bases de Datos</h3>
-                    <p>MySQL, SQL Server</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-shopping-cart"></i>
-                    </div>
-                    <h3>Sistemas de Venta</h3>
-                    <p>Desarrollo de sistemas POS</p>
-                </div>
-                <div class="skill-card">
-                    <div class="skill-icon">
-                        <i class="fas fa-language"></i>
-                    </div>
-                    <h3>Idiomas</h3>
-                    <p>Español (nativo), Inglés, Quechua</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección Proyectos -->
-    <section id="projects" class="section" data-aos="fade-up">
-        <div class="container">
-            <h2 class="section-title">Mis Proyectos</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <img src="https://via.placeholder.com/400x200" alt="Sistema de Ventas" class="project-img">
-                    <div class="project-info">
-                        <h3>Sistema de Ventas</h3>
-                        <p>Sistema completo de punto de venta con control de inventario y reportes.</p>
-                        <div class="project-links">
-                            <a href="https://github.com/tuusuario/sistema-ventas" target="_blank" class="btn-primary">
-                                <i class="fab fa-github"></i> Código
-                            </a>
-                            <a href="#" class="btn-secondary">
-                                <i class="fas fa-external-link-alt"></i> Demo
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <img src="https://via.placeholder.com/400x200" alt="Aplicación Empresarial" class="project-img">
-                    <div class="project-info">
-                        <h3>Aplicación Empresarial</h3>
-                        <p>Sistema de gestión para pequeñas y medianas empresas.</p>
-                        <div class="project-links">
-                            <a href="https://github.com/tuusuario/aplicacion-empresarial" target="_blank" class="btn-primary">
-                                <i class="fab fa-github"></i> Código
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <img src="https://via.placeholder.com/400x200" alt="Portfolio Personal" class="project-img">
-                    <div class="project-info">
-                        <h3>Portfolio Personal</h3>
-                        <p>Este mismo sitio web desarrollado con tecnologías modernas.</p>
-                        <div class="project-links">
-                            <a href="https://github.com/tuusuario/portfolio" target="_blank" class="btn-primary">
-                                <i class="fab fa-github"></i> Código
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sección Contacto -->
-    <section id="contact" class="section" data-aos="fade-up">
-        <div class="container">
-            <h2 class="section-title">Contáctame</h2>
-            <div class="contact-container">
-                <form id="contact-form" class="contact-form" action="https://formsubmit.co/tu-email@gmail.com" method="POST">
-                    <input type="hidden" name="_next" value="https://tudominio.com/gracias.html">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_subject" value="Nuevo mensaje desde tu portfolio">
-                    
-                    <div class="form-group">
-                        <input type="text" name="name" placeholder="Tu nombre" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="Tu email" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <textarea name="message" placeholder="Tu mensaje" rows="5" required></textarea>
-                    </div>
-                    
-                    <button type="submit" class="btn-primary">
-                        <i class="fas fa-paper-plane"></i> Enviar Mensaje
-                    </button>
-                </form>
-                
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
-                        </div>
-                        <div>
-                            <h3>Ubicación</h3>
-                            <p>Comas, Lima, Perú</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div>
-                            <h3>Teléfono</h3>
-                            <p><a href="tel:+51950654906">+51 950 654 906</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div>
-                            <h3>Email</h3>
-                            <p><a href="mailto:tu-email@gmail.com">tu-email@gmail.com</a></p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <div class="contact-icon">
-                            <i class="fab fa-github"></i>
-                        </div>
-                        <div>
-                            <h3>GitHub</h3>
-                            <p><a href="https://github.com/tuusuario" target="_blank">github.com/tuusuario</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Barra flotante de redes sociales -->
-    <div class="social-float">
-        <a href="https://www.linkedin.com/in/tuperfil" target="_blank" class="social-icon linkedin" aria-label="LinkedIn">
-            <i class="fab fa-linkedin-in"></i>
-            <span class="tooltip">Conectemos en LinkedIn</span>
-        </a>
-        <a href="https://github.com/tuusuario" target="_blank" class="social-icon github" aria-label="GitHub">
-            <i class="fab fa-github"></i>
-            <span class="tooltip">Mis proyectos en GitHub</span>
-        </a>
-        <a href="https://wa.me/51950654906?text=Hola%20Yuler,%20vi%20tu%20portfolio%20y..." target="_blank" class="social-icon whatsapp" aria-label="WhatsApp">
-            <i class="fab fa-whatsapp"></i>
-            <span class="tooltip">Hablemos por WhatsApp</span>
-        </a>
-        <a href="https://www.instagram.com/tuperfil" target="_blank" class="social-icon instagram" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-            <span class="tooltip">Sígueme en Instagram</span>
-        </a>
+<div class="container-3d" id="envelope-container">
+  <div class="envelope-wrapper">
+    <div class="envelope">
+      <div class="shine"></div>
+      <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+        <span class="text-white font-medium tracking-wider">PARA YOMARA</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto mt-2 text-white opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
+        </svg>
+      </div>
     </div>
+    <div class="flap"></div>
+  </div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2023 Yuler Quispe Centeno. Todos los derechos reservados.</p>
-        </div>
-    </footer>
+  <div class="letter">
+    <button class="close-btn" id="close-btn">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    
+    <div class="space-y-3">
+      <h2 class="text-xl font-serif font-bold text-rose-600 text-center mb-2">Para alguien especial...</h2>
+      
+      <p class="text-gray-800"><span class="font-semibold text-rose-700">Querida Yomara,</span></p>
+      
+      <p class="text-gray-700">Hay momentos que quedan grabados en la memoria como destellos de luz, y nuestro encuentro fue uno de ellos. Tu sonrisa tiene esa cualidad rara que ilumina hasta los rincones más inadvertidos.</p>
+      
+      <p class="text-gray-700">Me fascina cómo irradias una energía tan auténtica - esa mezcla perfecta entre calma y vivacidad que hace que cada conversación contigo sea como encontrar un oasis en medio del ruido cotidiano.</p>
+      
+      <p class="text-gray-700">Aunque nuestro camino recién comienza a trazarse, quería detenerme a decirte lo significativo que fue para mí ese primer cruce de palabras. Hay magia en esas pequeñas coincidencias que el universo nos regala.</p>
+      
+      <div class="bg-rose-50 p-3 rounded-lg border-l-4 border-rose-300 mt-4">
+        <p class="text-rose-800 italic font-medium">"Gracias por ser esa brisa fresca que llega justo cuando más se necesita. Ojalá la vida te devuelva siempre la misma luz que regalas a los demás."</p>
+      </div>
+      
+      <p class="text-right mt-4 text-gray-600 font-medium">Con sincero aprecio,<br><span class="text-rose-700">Yuler</span></p>
+      
+      <div class="mt-4 pt-3 border-t border-rose-100 text-xs text-center text-rose-500">
+        <p>PD: Si alguna vez necesitas ayuda con esas temidas tareas, cuenta conmigo. Prometo ser tu aliado académico ✨</p>
+      </div>
+    </div>
+  </div>
+</div>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-    // Inicializar AOS (Animate On Scroll)
-    AOS.init({
-        duration: 800,
-        once: true
-    });
-
-    // Dark Mode Toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const currentTheme = localStorage.getItem('theme') || 'light';
-
-    // Aplicar tema guardado
-    document.documentElement.setAttribute('data-theme', currentTheme);
-
-    themeToggle.addEventListener('click', () => {
-        const theme = document.documentElement.getAttribute('data-theme');
-        const newTheme = theme === 'light' ? 'dark' : 'light';
-        
-        document.documentElement.setAttribute('data-theme', newTheme);
-        localStorage.setItem('theme', newTheme);
-        
-        // Cambiar icono
-        themeToggle.innerHTML = newTheme === 'light' 
-            ? '<i class="fas fa-moon"></i>' 
-            : '<i class="fas fa-sun"></i>';
-    });
-
-    // Cambiar icono según tema actual
-    if (currentTheme === 'dark') {
-        themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+<script>
+  // Crear estrellas de fondo
+  function createStars() {
+    const container = document.getElementById('stars-container');
+    const starCount = 100;
+    
+    for (let i = 0; i < starCount; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      
+      // Tamaño aleatorio entre 1px y 3px
+      const size = Math.random() * 2 + 1;
+      star.style.width = `${size}px`;
+      star.style.height = `${size}px`;
+      
+      // Posición aleatoria
+      star.style.left = `${Math.random() * 100}vw`;
+      star.style.top = `${Math.random() * 100}vh`;
+      
+      // Duración y delay de animación aleatorios
+      star.style.setProperty('--duration', `${Math.random() * 5 + 3}s`);
+      star.style.animationDelay = `${Math.random() * 5}s`;
+      
+      container.appendChild(star);
     }
+  }
 
-    // Formulario de contacto con FormSubmit.co
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const submitBtn = contactForm.querySelector('button[type="submit"]');
-            const originalText = submitBtn.innerHTML;
-            
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-            submitBtn.disabled = true;
-            
-            fetch(contactForm.action, {
-                method: 'POST',
-                body: new FormData(contactForm),
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    alert('¡Mensaje enviado con éxito! Gracias por contactarme.');
-                    contactForm.reset();
-                } else {
-                    throw new Error('Error en el envío');
-                }
-            })
-            .catch(error => {
-                alert('Hubo un problema al enviar el mensaje. Por favor inténtalo de nuevo.');
-            })
-            .finally(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            });
-        });
+  // Crear confeti
+  function createConfetti() {
+    const colors = ['#e74c3c', '#f39c12', '#2ecc71', '#3498db', '#9b59b6'];
+    const container = document.getElementById('envelope-container');
+    
+    for (let i = 0; i < 50; i++) {
+      const confetti = document.createElement('div');
+      confetti.className = 'confetti';
+      
+      // Forma aleatoria (cuadrado o círculo)
+      if (Math.random() > 0.5) {
+        confetti.style.borderRadius = '50%';
+      }
+      
+      // Tamaño aleatorio
+      const size = Math.random() * 8 + 5;
+      confetti.style.width = `${size}px`;
+      confetti.style.height = `${size}px`;
+      
+      // Color aleatorio
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      
+      // Posición inicial aleatoria
+      confetti.style.left = `${Math.random() * 100}%`;
+      
+      // Duración y delay de animación aleatorios
+      confetti.style.animationDuration = `${Math.random() * 2 + 2}s`;
+      confetti.style.animationDelay = `${Math.random() * 0.5}s`;
+      
+      container.appendChild(confetti);
     }
+  }
 
-    // Menú hamburguesa para móviles
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-
-    if (hamburger && navLinks) {
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            hamburger.innerHTML = navLinks.classList.contains('active') 
-                ? '<i class="fas fa-times"></i>' 
-                : '<i class="fas fa-bars"></i>';
-        });
+  // Abrir/cerrar sobre
+  function toggleEnvelope() {
+    const container = document.getElementById('envelope-container');
+    container.classList.toggle('open');
+    
+    if (container.classList.contains('open')) {
+      createConfetti();
     }
+  }
 
-    // Smooth scrolling para enlaces internos
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - 70,
-                    behavior: 'smooth'
-                });
-                
-                // Cerrar menú móvil si está abierto
-                if (navLinks && navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    hamburger.innerHTML = '<i class="fas fa-bars"></i>';
-                }
-            }
-        });
-    });
-    </script>
+  // Cerrar solo la carta
+  function closeLetter() {
+    event.stopPropagation();
+    document.getElementById('envelope-container').classList.remove('open');
+  }
+
+  // Event listeners
+  document.addEventListener('DOMContentLoaded', () => {
+    createStars();
+    document.getElementById('envelope-container').addEventListener('click', toggleEnvelope);
+    document.getElementById('close-btn').addEventListener('click', closeLetter);
+  });
+
+  // Efecto de máquina de escribir para el texto (opcional)
+  function typeWriter(element, text, speed) {
+    let i = 0;
+    element.textContent = '';
+    
+    function typing() {
+      if (i < text.length) {
+        element.textContent += text.charAt(i);
+        i++;
+        setTimeout(typing, speed);
+      }
+    }
+    
+    typing();
+  }
+
+
+</script>
+
 </body>
 </html>
