@@ -206,9 +206,246 @@
         left: 150%;
       }
     }
+
+    /* Modal de presentación */
+    .intro-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.8s ease;
+    }
+
+    .intro-modal.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-content {
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      border-radius: 16px;
+      width: 90%;
+      max-width: 400px;
+      padding: 30px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+      transform: scale(0.9);
+      transition: transform 0.5s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .modal-content::before {
+      content: '';
+      position: absolute;
+      top: -10px;
+      left: -10px;
+      right: -10px;
+      bottom: -10px;
+      background: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);
+      z-index: -1;
+      border-radius: 20px;
+      opacity: 0.3;
+    }
+
+    .intro-modal.active .modal-content {
+      transform: scale(1);
+    }
+
+    .modal-title {
+      font-family: 'Playfair Display', serif;
+      color: #6d6875;
+      font-size: 24px;
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .modal-title::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, #e5989b, transparent);
+    }
+
+    .modal-text {
+      color: #6d6875;
+      margin-bottom: 25px;
+      line-height: 1.6;
+    }
+
+    .garden-container {
+      width: 100%;
+      height: 200px;
+      position: relative;
+      margin: 20px 0;
+    }
+
+    .flower-pot {
+      width: 100px;
+      height: 80px;
+      background: linear-gradient(145deg, #b5838d, #6d6875);
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      border-radius: 0 0 10px 10px;
+    }
+
+    .flower-stem {
+      width: 6px;
+      height: 0;
+      background: linear-gradient(to bottom, #81b29a, #588157);
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: height 1.5s ease;
+    }
+
+    .flower-bud {
+      width: 20px;
+      height: 20px;
+      background: #f4a261;
+      border-radius: 50%;
+      position: absolute;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%) scale(0);
+      transition: transform 1s ease, background 1s ease;
+    }
+
+    .flower-petal {
+      position: absolute;
+      background: #ffcdb2;
+      border-radius: 50% 0 50% 50%;
+      opacity: 0;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .water-btn {
+      background: linear-gradient(145deg, #457b9d, #1d3557);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(29, 53, 87, 0.4);
+      margin-top: 20px;
+    }
+
+    .water-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(29, 53, 87, 0.6);
+    }
+
+    .water-btn:active {
+      transform: translateY(1px);
+    }
+
+    .water-effect {
+      position: absolute;
+      width: 30px;
+      height: 30px;
+      background: rgba(168, 218, 220, 0.7);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: water-drop 1s ease-out forwards;
+    }
+
+    @keyframes water-drop {
+      0% {
+        transform: translateY(-20px) scale(0.8);
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(80px) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    .sparkle {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      background: white;
+      border-radius: 50%;
+      pointer-events: none;
+      animation: sparkle-fly 1.5s ease-out forwards;
+    }
+
+    @keyframes sparkle-fly {
+      0% {
+        transform: translate(0, 0) scale(1);
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--tx), var(--ty)) scale(0);
+        opacity: 0;
+      }
+    }
+
+    .continue-btn {
+      background: linear-gradient(145deg, #e5989b, #b5838d);
+      color: white;
+      border: none;
+      padding: 12px 30px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      transition: all 0.3s ease;
+      box-shadow: 0 5px 15px rgba(181, 131, 141, 0.4);
+      display: none;
+      margin: 20px auto 0;
+    }
+
+    .continue-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(181, 131, 141, 0.6);
+    }
+
+    .continue-btn:active {
+      transform: translateY(1px);
+    }
   </style>
 </head>
 <body class="antialiased">
+
+<!-- Modal de presentación -->
+<div class="intro-modal active" id="intro-modal">
+  <div class="modal-content">
+    <h1 class="modal-title">¡Una sorpresa para ti!</h1>
+    <p class="modal-text">Antes de abrir este mensaje especial, ayúdame a hacer crecer esta pequeña flor con tu magia digital...</p>
+    
+    <div class="garden-container" id="garden-container">
+      <div class="flower-pot"></div>
+      <div class="flower-stem" id="flower-stem"></div>
+      <div class="flower-bud" id="flower-bud"></div>
+      <!-- Los pétalos se añadirán con JavaScript -->
+    </div>
+    
+    <button class="water-btn" id="water-btn">Regar la flor</button>
+    <button class="continue-btn" id="continue-btn">Continuar al mensaje</button>
+  </div>
+</div>
 
 <!-- Estrellas de fondo -->
 <div id="stars-container"></div>
@@ -218,7 +455,7 @@
     <div class="envelope">
       <div class="shine"></div>
       <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
-        <span class="text-white font-medium tracking-wider">PARA YOMARA</span>
+        <span class="text-white font-medium tracking-wider">PARA MILAGROS</span>
         <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 mx-auto mt-2 text-white opacity-80" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 4v16m8-8H4" />
         </svg>
@@ -235,24 +472,24 @@
     </button>
     
     <div class="space-y-3">
-      <h2 class="text-xl font-serif font-bold text-rose-600 text-center mb-2">Para alguien especial...</h2>
-      
-      <p class="text-gray-800"><span class="font-semibold text-rose-700">Querida Yomara,</span></p>
-      
-      <p class="text-gray-700">Hay momentos que quedan grabados en la memoria como destellos de luz, y nuestro encuentro fue uno de ellos. Tu sonrisa tiene esa cualidad rara que ilumina hasta los rincones más inadvertidos.</p>
-      
-      <p class="text-gray-700">Me fascina cómo irradias una energía tan auténtica - esa mezcla perfecta entre calma y vivacidad que hace que cada conversación contigo sea como encontrar un oasis en medio del ruido cotidiano.</p>
-      
-      <p class="text-gray-700">Aunque nuestro camino recién comienza a trazarse, quería detenerme a decirte lo significativo que fue para mí ese primer cruce de palabras. Hay magia en esas pequeñas coincidencias que el universo nos regala.</p>
-      
-      <div class="bg-rose-50 p-3 rounded-lg border-l-4 border-rose-300 mt-4">
-        <p class="text-rose-800 italic font-medium">"Gracias por ser esa brisa fresca que llega justo cuando más se necesita. Ojalá la vida te devuelva siempre la misma luz que regalas a los demás."</p>
+      <h2 class="text-xl font-serif font-bold text-pink-600 text-center mb-2">Para una personita que ilumina pantallas...</h2>
+
+      <p class="text-gray-800"><span class="font-semibold text-pink-700"> Milagros,</span></p>
+
+      <p class="text-gray-700">A veces la vida nos sorprende con encuentros inesperados, y tú eres uno de esos regalos que el destino me tenía guardado. Desde que cruzamos palabras en TikTok, tu ternura y simpatía me han demostrado que incluso en un espacio digital puede florecer una amistad sincera y luminosa.</p>
+
+      <p class="text-gray-700">Me encanta esa chispa que tienes, esa mezcla de alegría genuina y dulzura que contagia buenas vibras con solo verte aparecer. Eres como esa canción que no sabías que necesitabas, pero que se queda resonando en el corazón.</p>
+
+      <p class="text-gray-700">Gracias por el apoyo, por los gestos sencillos que en realidad valen muchísimo. Me alegra que estemos construyendo algo bonito, de esos lazos que nacen sin prisa pero con cariño mutuo.</p>
+
+      <div class="bg-pink-50 p-3 rounded-lg border-l-4 border-pink-300 mt-4">
+        <p class="text-pink-800 italic font-medium">"Tú eres esa nota suave en medio del ruido, ese rayito que aparece justo cuando uno lo necesita. Que nunca te falte la ternura que regalas al mundo."</p>
       </div>
-      
-      <p class="text-right mt-4 text-gray-600 font-medium">Con sincero aprecio,<br><span class="text-rose-700">Yuler</span></p>
-      
-      <div class="mt-4 pt-3 border-t border-rose-100 text-xs text-center text-rose-500">
-        <p>PD: Si alguna vez necesitas ayuda con esas temidas tareas, cuenta conmigo. Prometo ser tu aliado académico ✨</p>
+
+      <p class="text-right mt-4 text-gray-600 font-medium">Con admiración y buena vibra,<br><span class="text-pink-700">Skill</span></p>
+
+      <div class="mt-4 pt-3 border-t border-pink-100 text-xs text-center text-pink-500">
+        <p>PD: Si algún día te gustaría crear algo bonito —ya sea una idea digital, una página interactiva, o un espacio que inspire a otros— yo estaría feliz de ayudarte a imaginarlo y hacerlo realidad. No necesitas saber de tecnología; solo tus ganas y esa energía tan especial que transmites. Yo me encargo del resto 💡✨</p>
       </div>
     </div>
   </div>
@@ -268,16 +505,13 @@
       const star = document.createElement('div');
       star.className = 'star';
       
-      // Tamaño aleatorio entre 1px y 3px
       const size = Math.random() * 2 + 1;
       star.style.width = `${size}px`;
       star.style.height = `${size}px`;
       
-      // Posición aleatoria
       star.style.left = `${Math.random() * 100}vw`;
       star.style.top = `${Math.random() * 100}vh`;
       
-      // Duración y delay de animación aleatorios
       star.style.setProperty('--duration', `${Math.random() * 5 + 3}s`);
       star.style.animationDelay = `${Math.random() * 5}s`;
       
@@ -294,23 +528,16 @@
       const confetti = document.createElement('div');
       confetti.className = 'confetti';
       
-      // Forma aleatoria (cuadrado o círculo)
       if (Math.random() > 0.5) {
         confetti.style.borderRadius = '50%';
       }
       
-      // Tamaño aleatorio
       const size = Math.random() * 8 + 5;
       confetti.style.width = `${size}px`;
       confetti.style.height = `${size}px`;
       
-      // Color aleatorio
       confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-      
-      // Posición inicial aleatoria
       confetti.style.left = `${Math.random() * 100}%`;
-      
-      // Duración y delay de animación aleatorios
       confetti.style.animationDuration = `${Math.random() * 2 + 2}s`;
       confetti.style.animationDelay = `${Math.random() * 0.5}s`;
       
@@ -334,30 +561,130 @@
     document.getElementById('envelope-container').classList.remove('open');
   }
 
-  // Event listeners
+  // Efecto de agua al regar
+  function createWaterEffect(x, y) {
+    const water = document.createElement('div');
+    water.className = 'water-effect';
+    water.style.left = `${x}px`;
+    water.style.top = `${y}px`;
+    document.getElementById('garden-container').appendChild(water);
+    
+    setTimeout(() => {
+      water.remove();
+    }, 1000);
+  }
+
+  // Crear efecto de brillo
+  function createSparkle(x, y) {
+    const sparkle = document.createElement('div');
+    sparkle.className = 'sparkle';
+    sparkle.style.left = `${x}px`;
+    sparkle.style.top = `${y}px`;
+    sparkle.style.setProperty('--tx', `${(Math.random() - 0.5) * 100}px`);
+    sparkle.style.setProperty('--ty', `${(Math.random() - 0.5) * 100}px`);
+    document.getElementById('garden-container').appendChild(sparkle);
+    
+    setTimeout(() => {
+      sparkle.remove();
+    }, 1500);
+  }
+
+  // Crear pétalos de flor
+  function createFlowerPetals() {
+    const bud = document.getElementById('flower-bud');
+    const petals = [];
+    
+    for (let i = 0; i < 8; i++) {
+      const petal = document.createElement('div');
+      petal.className = 'flower-petal';
+      petal.style.width = `${Math.random() * 15 + 15}px`;
+      petal.style.height = `${Math.random() * 15 + 15}px`;
+      petal.style.transform = `rotate(${i * 45}deg) translate(25px) rotate(45deg)`;
+      petal.style.left = '50%';
+      petal.style.bottom = '80px';
+      document.getElementById('garden-container').appendChild(petal);
+      petals.push(petal);
+    }
+    
+    return petals;
+  }
+
+  // Animación de crecimiento de la flor
+  function growFlower() {
+    const stem = document.getElementById('flower-stem');
+    const bud = document.getElementById('flower-bud');
+    const waterBtn = document.getElementById('water-btn');
+    const continueBtn = document.getElementById('continue-btn');
+    
+    let waterCount = 0;
+    const maxWater = 3;
+    let petals = [];
+    
+    waterBtn.addEventListener('click', (e) => {
+      if (waterCount >= maxWater) return;
+      
+      // Efecto de agua
+      createWaterEffect(e.clientX - e.target.getBoundingClientRect().left, e.clientY - e.target.getBoundingClientRect().top);
+      
+      waterCount++;
+      
+      // Crecimiento gradual
+      stem.style.height = `${80 + (waterCount * 40)}px`;
+      bud.style.bottom = `${80 + (waterCount * 40)}px`;
+      
+      // Efectos visuales
+      for (let i = 0; i < 10; i++) {
+        setTimeout(() => {
+          createSparkle(
+            Math.random() * document.getElementById('garden-container').offsetWidth,
+            Math.random() * document.getElementById('garden-container').offsetHeight
+          );
+        }, i * 100);
+      }
+      
+      // Cuando la flor está completamente regada
+      if (waterCount === maxWater) {
+        setTimeout(() => {
+          bud.style.transform = 'translateX(-50%) scale(1)';
+          bud.style.background = '#ffb4a2';
+          
+          // Crear pétalos
+          petals = createFlowerPetals();
+          
+          // Mostrar pétalos con retraso
+          petals.forEach((petal, i) => {
+            setTimeout(() => {
+              petal.style.opacity = '1';
+              petal.style.transform = `rotate(${i * 45}deg) translate(25px) rotate(45deg) scale(1)`;
+            }, i * 150);
+          });
+          
+          // Cambiar el botón
+          waterBtn.style.display = 'none';
+          continueBtn.style.display = 'block';
+        }, 800);
+      }
+    });
+    
+    // Continuar al mensaje principal
+    continueBtn.addEventListener('click', () => {
+      document.getElementById('intro-modal').classList.remove('active');
+      
+      // Efecto de transición
+      setTimeout(() => {
+        document.getElementById('intro-modal').style.display = 'none';
+      }, 800);
+    });
+  }
+
+  // Inicialización
   document.addEventListener('DOMContentLoaded', () => {
     createStars();
+    growFlower();
+    
     document.getElementById('envelope-container').addEventListener('click', toggleEnvelope);
     document.getElementById('close-btn').addEventListener('click', closeLetter);
   });
-
-  // Efecto de máquina de escribir para el texto (opcional)
-  function typeWriter(element, text, speed) {
-    let i = 0;
-    element.textContent = '';
-    
-    function typing() {
-      if (i < text.length) {
-        element.textContent += text.charAt(i);
-        i++;
-        setTimeout(typing, speed);
-      }
-    }
-    
-    typing();
-  }
-
-
 </script>
 
 </body>
